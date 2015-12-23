@@ -5,15 +5,15 @@
 import urllib, urlparse, re
 
 
-url = "http://plast.me/plastic/13077-ktulhu.html"
-content = urllib.urlopen(url).read()
-Urls_of_img = re.findall('img .*?src="(.*?)"', content)
-AbsUrls =[]
+start_url = "http://plast.me/plastic/13077-ktulhu.html"
+content_img = urllib.urlopen(start_url).read()
+urls_of_img = re.findall('img .*?src="(.*?)"', content_img)
+abs_urls =[]
 try:
-    for urls in Urls_of_img:
-        AbsUrls.append(urlparse.urljoin(url, urls))
-    for urls in AbsUrls:
-        name = urls.rsplit('/',1)[1]
-        urllib.urlretrieve(urls, name)
+    for url in urls_of_img:
+        abs_urls.append(urlparse.urljoin(start_url, url))
+    for url in abs_urls:
+        name = url.rsplit('/',1)[1]
+        urllib.urlretrieve(url, name)
 except:
     print 'err'
